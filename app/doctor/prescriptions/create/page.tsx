@@ -26,10 +26,10 @@ export default function CreatePrescription() {
 
   // Mock data for patients
   const patients = [
-    { id: "1", name: "John Doe" },
-    { id: "2", name: "Jane Smith" },
-    { id: "3", name: "Robert Johnson" },
-    { id: "4", name: "Emily Williams" },
+    { id: "1", name: "Alexander Salvatierra" },
+    { id: "2", name: "Alfredo Garcia" },
+    { id: "3", name: "Asuri Vianney" },
+    { id: "4", name: "Eduardo" },
   ]
 
   useEffect(() => {
@@ -64,8 +64,8 @@ export default function CreatePrescription() {
 
     if (!patient || medications.some((med) => !med.name || !med.dosage || !med.frequency)) {
       toast({
-        title: "Missing information",
-        description: "Please fill in all required fields.",
+        title: "Falta información",
+        description: "Por favor rellena todos los campos",
         variant: "destructive",
       })
       return
@@ -79,15 +79,15 @@ export default function CreatePrescription() {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       toast({
-        title: "Prescription created",
-        description: "The prescription has been successfully created.",
+        title: "Receta creada",
+        description: "La receta ha sido creada exitosamente",
       })
 
       router.push("/doctor/dashboard")
     } catch (error) {
       toast({
-        title: "Failed to create prescription",
-        description: "Please try again later.",
+        title: "Algo falló al crear tu receta",
+        description: "Por favor intenta de nuevo mas tarde",
         variant: "destructive",
       })
     } finally {
@@ -96,7 +96,7 @@ export default function CreatePrescription() {
   }
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>
+    return <div className="flex items-center justify-center min-h-screen">Cargando...</div>
   }
 
   if (!user || user.role !== "doctor") {
@@ -108,19 +108,19 @@ export default function CreatePrescription() {
     <DashboardLayout user={user}>
       <div className="flex flex-col gap-4 p-4 md:p-8">
         <div className="flex flex-col gap-2 mb-4">
-          <h1 className="text-3xl font-bold tracking-tight">Create Prescription</h1>
-          <p className="text-muted-foreground">Create a new prescription for a patient.</p>
+          <h1 className="text-3xl font-bold tracking-tight">Crea una receta</h1>
+          <p className="text-muted-foreground">Crea una nueva prescripción para tus paciente</p>
         </div>
 
         <Card className="max-w-3xl mx-auto">
           <CardHeader>
-            <CardTitle>Prescription Details</CardTitle>
-            <CardDescription>Fill in the details for the patient's prescription.</CardDescription>
+            <CardTitle>Detalles</CardTitle>
+            <CardDescription>Rellena con la información de la receta de tu paciente</CardDescription>
           </CardHeader>
           <CardContent>
             <form id="prescription-form" onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="patient">Select Patient</Label>
+                <Label htmlFor="patient">Selecciona al paciente</Label>
                 <Select value={patient} onValueChange={setPatient}>
                   <SelectTrigger id="patient">
                     <SelectValue placeholder="Select a patient" />
@@ -137,16 +137,16 @@ export default function CreatePrescription() {
 
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label>Medications</Label>
+                  <Label>Medicamentos</Label>
                   <Button type="button" variant="outline" size="sm" onClick={addMedication}>
-                    <Plus className="h-4 w-4 mr-1" /> Add Medication
+                    <Plus className="h-4 w-4 mr-1" /> Agrega medicación
                   </Button>
                 </div>
 
                 {medications.map((medication, index) => (
                   <div key={index} className="p-4 border rounded-md space-y-4">
                     <div className="flex justify-between items-center">
-                      <h4 className="font-medium">Medication {index + 1}</h4>
+                      <h4 className="font-medium">Medicación {index + 1}</h4>
                       {medications.length > 1 && (
                         <Button type="button" variant="ghost" size="sm" onClick={() => removeMedication(index)}>
                           <Trash2 className="h-4 w-4 text-destructive" />
@@ -155,16 +155,16 @@ export default function CreatePrescription() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor={`med-name-${index}`}>Medication Name</Label>
+                        <Label htmlFor={`med-name-${index}`}>Nombre del medicamento</Label>
                         <Input
                           id={`med-name-${index}`}
                           value={medication.name}
                           onChange={(e) => handleMedicationChange(index, "name", e.target.value)}
-                          placeholder="e.g., Amoxicillin"
+                          placeholder="e.g., Amoxicilina"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor={`med-dosage-${index}`}>Dosage</Label>
+                        <Label htmlFor={`med-dosage-${index}`}>Dosis</Label>
                         <Input
                           id={`med-dosage-${index}`}
                           value={medication.dosage}
@@ -173,21 +173,21 @@ export default function CreatePrescription() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor={`med-frequency-${index}`}>Frequency</Label>
+                        <Label htmlFor={`med-frequency-${index}`}>Frecuencia</Label>
                         <Input
                           id={`med-frequency-${index}`}
                           value={medication.frequency}
                           onChange={(e) => handleMedicationChange(index, "frequency", e.target.value)}
-                          placeholder="e.g., Twice daily"
+                          placeholder="e.g., Una pastilla cada 12 hrs."
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor={`med-duration-${index}`}>Duration</Label>
+                        <Label htmlFor={`med-duration-${index}`}>Duracion</Label>
                         <Input
                           id={`med-duration-${index}`}
                           value={medication.duration}
                           onChange={(e) => handleMedicationChange(index, "duration", e.target.value)}
-                          placeholder="e.g., 7 days"
+                          placeholder="e.g., 7 dias"
                         />
                       </div>
                     </div>

@@ -27,10 +27,10 @@ export default function BookAppointment() {
 
   // Mock data for doctors and time slots
   const doctors = [
-    { id: "1", name: "Dr. John Smith", specialty: "Cardiology" },
-    { id: "2", name: "Dr. Sarah Johnson", specialty: "Pediatrics" },
-    { id: "3", name: "Dr. Michael Brown", specialty: "Neurology" },
-    { id: "4", name: "Dr. Emily Davis", specialty: "Dermatology" },
+    { id: "1", name: "Dr. Pepe", specialty: "Derma" },
+    { id: "2", name: "Dra. Sara", specialty: "Derma" },
+    { id: "3", name: "Dr.  Isai", specialty: "Derma" },
+    { id: "4", name: "Dr. Emilia", specialty: "Derma" },
   ]
 
   const timeSlots = [
@@ -107,19 +107,19 @@ export default function BookAppointment() {
     <DashboardLayout user={user}>
       <div className="flex flex-col gap-4 p-4 md:p-8">
         <div className="flex flex-col gap-2 mb-4">
-          <h1 className="text-3xl font-bold tracking-tight">Book an Appointment</h1>
-          <p className="text-muted-foreground">Schedule a new appointment with one of our healthcare providers.</p>
+          <h1 className="text-3xl font-bold tracking-tight">Realiza una cita</h1>
+          <p className="text-muted-foreground">Agenda una cita con uno de nuestros especialistas</p>
         </div>
 
         <Card className="max-w-2xl mx-auto">
           <CardHeader>
-            <CardTitle>Appointment Details</CardTitle>
-            <CardDescription>Please select your preferred doctor, date, and time.</CardDescription>
+            <CardTitle>Detalles</CardTitle>
+            <CardDescription>Por favor selecciona tu doctor, dia y fecha</CardDescription>
           </CardHeader>
           <CardContent>
             <form id="appointment-form" onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="doctor">Select Doctor</Label>
+                <Label htmlFor="doctor">Selecciona tu doctor</Label>
                 <Select value={doctor} onValueChange={setDoctor}>
                   <SelectTrigger id="doctor">
                     <SelectValue placeholder="Select a doctor" />
@@ -135,7 +135,7 @@ export default function BookAppointment() {
               </div>
 
               <div className="space-y-2">
-                <Label>Select Date</Label>
+                <Label>Selecciona una fecha</Label>
                 <Calendar
                   mode="single"
                   selected={date}
@@ -151,7 +151,7 @@ export default function BookAppointment() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="time">Select Time Slot</Label>
+                <Label htmlFor="time">Selecciona un horario disponible</Label>
                 <Select value={timeSlot} onValueChange={setTimeSlot}>
                   <SelectTrigger id="time">
                     <SelectValue placeholder="Select a time slot" />
@@ -167,7 +167,7 @@ export default function BookAppointment() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="reason">Reason for Visit</Label>
+                <Label htmlFor="reason">Razón de tu visita</Label>
                 <Textarea
                   id="reason"
                   placeholder="Please briefly describe your symptoms or reason for the appointment"

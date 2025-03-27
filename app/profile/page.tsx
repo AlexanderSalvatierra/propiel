@@ -45,8 +45,8 @@ export default function ProfilePage() {
         firstName: parsedUser.firstName || "",
         lastName: parsedUser.lastName || "",
         email: parsedUser.email || "",
-        phone: "+34 612 345 678",
-        address: "Calle Principal 123, Madrid, España",
+        phone: "755 559 6210",
+        address: "Zihuatanejo de Azueta",
         bio:
           parsedUser.role === "doctor"
             ? "Dermatólogo especializado en tratamientos para el acné y condiciones de la piel."
